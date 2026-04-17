@@ -2,8 +2,9 @@ FROM python:3.12-slim-bookworm
 
 WORKDIR /app
 
-COPY . .
+COPY requirements/backend.txt .
+RUN pip install --no-cache-dir -r backend.txt
 
-RUN pip install --no-cache-dir -r requirements/backend.txt
+COPY . .
 
 CMD ["uvicorn", "spaceship.main:app", "--host", "0.0.0.0", "--port", "8000"]
